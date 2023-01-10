@@ -26,7 +26,7 @@ public class hibernateUtil {
 
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-                settings.put(Environment.HBM2DDL_AUTO, "verify");
+                settings.put(Environment.HBM2DDL_AUTO, "validate");
                 sessionFactory = new Configuration()
                         .setProperties(settings)
                         .addAnnotatedClass(Book.class)
