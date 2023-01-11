@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import dao.contactDao;
 import model.Authors;
@@ -6,10 +6,10 @@ import model.Book;
 import model.Genre;
 
 public class Service {
-    private contactDao dao = new contactDao();
+    private contactDao dao;
 
-    public Service() {
-
+    public Service(contactDao dao) {
+        this.dao = dao;
     }
 
 

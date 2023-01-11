@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,9 +17,9 @@ public class Book {
     @ManyToOne
     @JoinColumn(name="author_id")
     private Authors author_id;
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name="genre_id")
-    private Genre genre_id;
+    private List<Genre> genre_id;
     @Column(name = "year")
     private int year;
     @Column(name = "countOfBooks")
@@ -29,7 +30,7 @@ public class Book {
 
 
 
-    public Book(int id, String name, Authors author_id, Genre genre_id, int year, int countOfBooks) {
+    public Book(int id, String name, Authors author_id, List genre_id, int year, int countOfBooks) {
         this.id = id;
         this.name = name;
         this.author_id = author_id;
@@ -106,13 +107,11 @@ public class Book {
         this.author_id = author_id;
     }
 
-    public Genre getGenre_id() {
+    public List<Genre> getGenre_id() {
         return genre_id;
     }
 
-    public void setGenre_id(Genre genre_id) {
+    public void setGenre_id(List<Genre> genre_id) {
         this.genre_id = genre_id;
     }
-
-
 }
