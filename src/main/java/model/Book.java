@@ -12,11 +12,13 @@ public class Book {
     private int id;
     @Column(name = "name")
     private String name;
-    @Column(name="author_id")
-    private int author_id;
 
-    @Column(name="genre_id")
-    private int genre_id;
+    @ManyToOne
+    @JoinColumn(name="author_id")
+    private Authors author_id;
+    @ManyToOne
+    @JoinColumn(name="genre_id")
+    private Genre genre_id;
     @Column(name = "year")
     private int year;
     @Column(name = "countOfBooks")
@@ -25,29 +27,15 @@ public class Book {
     public Book() {
     }
 
-    public Book(int id, String name, int author_id, int genre_id, int year, int countOfBooks) {
+
+
+    public Book(int id, String name, Authors author_id, Genre genre_id, int year, int countOfBooks) {
         this.id = id;
         this.name = name;
         this.author_id = author_id;
         this.genre_id = genre_id;
         this.year = year;
         this.countOfBooks = countOfBooks;
-    }
-
-    public int getAuthor_id() {
-        return author_id;
-    }
-
-    public void setAuthor_id(int author_id) {
-        this.author_id = author_id;
-    }
-
-    public int getGenre_id() {
-        return genre_id;
-    }
-
-    public void setGenre_id(int genre_id) {
-        this.genre_id = genre_id;
     }
 
     @Override
@@ -109,6 +97,21 @@ public class Book {
 
     public int getCountOfBooks() {
         return countOfBooks;
+    }
+    public Authors getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(Authors author_id) {
+        this.author_id = author_id;
+    }
+
+    public Genre getGenre_id() {
+        return genre_id;
+    }
+
+    public void setGenre_id(Genre genre_id) {
+        this.genre_id = genre_id;
     }
 
 

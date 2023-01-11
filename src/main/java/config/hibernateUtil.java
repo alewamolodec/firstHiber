@@ -1,6 +1,8 @@
 package config;
 
+import model.Authors;
 import model.Book;
+import model.Genre;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
@@ -30,6 +32,8 @@ public class hibernateUtil {
                 sessionFactory = new Configuration()
                         .setProperties(settings)
                         .addAnnotatedClass(Book.class)
+                        .addAnnotatedClass(Authors.class)
+                        .addAnnotatedClass(Genre.class)
                         .buildSessionFactory();
 
             } catch (Exception e) {

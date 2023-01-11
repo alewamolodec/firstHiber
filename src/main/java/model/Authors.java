@@ -1,10 +1,12 @@
 package model;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Authors")
+@Table(name = "Author")
 public class Authors {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +19,8 @@ public class Authors {
     @Column(name = "middleName")
     private String middleName;
     @Column(name = "birthDate")
-    private  String birthDate;
+    private Date birthDate;
+
 
     @Override
     public String toString() {
@@ -75,18 +78,18 @@ public class Authors {
         this.middleName = middleName;
     }
 
-    public String getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
     public Authors() {
     }
 
-    public Authors(int id, String firstName, String lastName, String middleName, String birthDate) {
+    public Authors(int id, String firstName, String lastName, String middleName, Date birthDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

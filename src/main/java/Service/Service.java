@@ -6,54 +6,47 @@ import model.Book;
 import model.Genre;
 
 public class Service {
-    private static contactDao dao;
+    private contactDao dao = new contactDao();
 
-    public Service(contactDao dao) {
-        this.dao = dao;
-    }
+    public Service() {
 
-    public static contactDao getDao() {
-        return dao;
     }
 
-    public  void setDao(contactDao dao) {
-        this.dao = dao;
-    }
 
-    public static void getBookById(int i){
-        getDao().getBookById(i);
+    public void getBookById(int i){
+        dao.getBookById(i);
     }
-    public static void getAuthorById(int i){
-        getDao().getAuthorById(i);
+    public void getAuthorById(int i){
+        dao.getAuthorById(i);
     }
-    public static void getGenreById(int i){
-        getDao().getGenreById(i);
+    public  void getGenreById(int i){
+        dao.getGenreById(i);
     }
-    public static void getAllBooks(){
-        getDao().getAllBooks();
+    public void getAllBooks(){
+        dao.getAllBooks();
     }
-    public static void getAllAuthors(){
-        getDao().getAllAuthors();
+    public void getAllAuthors(){
+        dao.getAllAuthors();
     }
-    public static void getAllGenres(){
-        getDao().getAllGenres();
+    public void getAllGenres(){
+        dao.getAllGenres();
     }
-    public static void addBook(Book b){
-        getDao().addBook(b);
+    public void addBook(Book b){
+        dao.addBook(b);
     }
-    public static void addAuthors(Authors a){
-        getDao().addAuthor(a);
+    public void addAuthors(Authors a){
+        dao.addAuthor(a);
     }
-    public static void addGenre(Genre g){
-        getDao().addGenre(g);
+    public void addGenre(Genre g){
+        dao.addGenre(g);
     }
-    public static void removeBook(Book b){
-        getDao().removeBook(b);
+    public void removeBook(Book b){
+        dao.removeBook(b);
     }
-    public static void removeAuthor(Authors a){
-        getDao().removeAuthor(a);
+    public void removeAuthor(Authors a){
+        dao.removeAuthor(a);
     }
-    public static void removeGenre(Genre g){
-        getDao().removeGenre(g);
+    public void removeGenre(Genre g){
+        dao.removeGenre(g);
     }
 }

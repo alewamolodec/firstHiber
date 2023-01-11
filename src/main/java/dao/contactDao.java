@@ -18,7 +18,7 @@ public class contactDao {
             session.getTransaction().commit();
             session.close();
         }catch (Exception e){
-            e.printStackTrace();
+           e.printStackTrace();
         }
     }
     public void getAuthorById(int id){
@@ -44,7 +44,7 @@ public class contactDao {
     public void getAllBooks(){
         try(Session session = hibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
-            session.createQuery("from book",Book.class);
+            session.createQuery("from Book",Book.class);
             session.getTransaction().commit();
             session.close();
         }catch (Exception e){
@@ -54,7 +54,7 @@ public class contactDao {
     public void getAllAuthors(){
         try(Session session = hibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
-            session.createQuery("from author",Authors.class);
+            session.createQuery("from Authors",Authors.class);
             session.getTransaction().commit();
             session.close();
         }catch (Exception e){
@@ -64,7 +64,7 @@ public class contactDao {
     public void getAllGenres(){
         try(Session session = hibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
-            session.createQuery("from genre",Genre.class);
+            session.createQuery("from Genre",Genre.class);
             session.getTransaction().commit();
             session.close();
         }catch (Exception e){

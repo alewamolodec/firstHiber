@@ -3,7 +3,10 @@ import dao.contactDao;
 
 public class Main {
     public static void main(String[] args) {
-        Service s = new Service(new contactDao());
-        s.getAllBooks();
+        Service service = new Service();
+        service.getAllBooks();
+        service.getGenreById(2);
+        service.getAllAuthors();
+        service.getAllGenres();
     }
 }
