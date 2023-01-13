@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 
 import java.util.List;
 
-public class contactDao {
+public class contactDao implements daoimpl {
 
     public void getBookById(int id){
         try(Session session = hibernateUtil.getSessionFactory().openSession()){
