@@ -1,12 +1,14 @@
-import dao.contactDao;
-import service.Service;
-
+import dao.authorDaoImpl;
+import dao.bookDaoImpl;
+import dao.genreDaoImpl;
+import service.bookServiceImpl;
+import service.authorServiceImpl;
+import service.genreServiceImpl;
 public class Main {
     public static void main(String[] args) {
-        Service service = new Service(new contactDao());
-        service.getAllBooks();
-        service.getGenreById(2);
-        service.getAllAuthors();
-        service.getAllGenres();
+        bookServiceImpl bookService = new bookServiceImpl(new bookDaoImpl());
+        authorServiceImpl authorService = new authorServiceImpl(new authorDaoImpl());
+        genreServiceImpl genreService = new genreServiceImpl(new genreDaoImpl());
+        bookService.getBookById(2);
     }
 }
