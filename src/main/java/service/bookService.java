@@ -2,9 +2,11 @@ package service;
 
 import model.Book;
 
+import java.util.List;
+
 public interface bookService {
-    public void getBookById(int i);
-    public void getAllBooks();
+    public Book getBookById(int i);
+    public List getAllBooks();
     public void addBook(Book b);
     public void removeBook(Book b);
 

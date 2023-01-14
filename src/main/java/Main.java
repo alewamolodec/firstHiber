@@ -1,14 +1,14 @@
-import dao.authorDaoImpl;
-import dao.bookDaoImpl;
-import dao.genreDaoImpl;
-import service.bookServiceImpl;
-import service.authorServiceImpl;
-import service.genreServiceImpl;
+import dao.AuthorDaoImpl;
+import dao.BookDaoImpl;
+import dao.GenreDaoImpl;
+import service.BookServiceImpl;
+import service.AuthorServiceImpl;
+import service.GenreServiceImpl;
 public class Main {
     public static void main(String[] args) {
-        bookServiceImpl bookService = new bookServiceImpl(new bookDaoImpl());
-        authorServiceImpl authorService = new authorServiceImpl(new authorDaoImpl());
-        genreServiceImpl genreService = new genreServiceImpl(new genreDaoImpl());
+        BookServiceImpl bookService = new BookServiceImpl(new BookDaoImpl());
+        AuthorServiceImpl authorService = new AuthorServiceImpl(new AuthorDaoImpl());
+        GenreServiceImpl genreService = new GenreServiceImpl(new GenreDaoImpl());
         bookService.getBookById(2);
     }
 }

@@ -9,7 +9,7 @@ import org.hibernate.cfg.Environment;
 
 import java.util.Properties;
 
-public class hibernateUtil {
+public class HibernateUtil {
     private static SessionFactory sessionFactory;
     public static SessionFactory getSessionFactory(){
         if (sessionFactory == null) {
