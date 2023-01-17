@@ -38,10 +38,10 @@ public class AuthorDaoImpl implements authorDao{
     }
 
     @Override
-    public boolean removeAuthor(Authors a) {
+    public boolean removeAuthor(Authors i) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            session.remove(a);
+            session.remove(i);
             session.getTransaction().commit();
             session.close();
             return true;

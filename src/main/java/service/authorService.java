@@ -9,5 +9,5 @@ public interface authorService {
     public Authors getAuthorById(int i);
     public List getAllAuthors();
     public void addAuthor(Authors a);
-    public void removeAuthor(Authors a);
+    public void removeAuthor(Authors i);
 }

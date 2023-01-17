@@ -9,5 +9,5 @@ public interface genreService {
     public Genre getGenreById(int i);
     public List getAllGenres();
     public void addGenre(Genre g);
-    public void removeGenre(Genre g);
+    public void removeGenre(int g);
 }

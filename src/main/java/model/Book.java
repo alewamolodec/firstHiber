@@ -30,7 +30,7 @@ public class Book {
 
 
 
-    public Book(int id, String name, Authors author_id, List genre_id, int year, int countOfBooks) {
+    public Book(String name, Authors author_id, List genre_id, int year, int countOfBooks) {
         this.id = id;
         this.name = name;
         this.author_id = author_id;

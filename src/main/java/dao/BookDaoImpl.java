@@ -38,10 +38,10 @@ public class BookDaoImpl implements bookDao{
     }
 
     @Override
-    public boolean removeBook(Book b) {
+    public boolean removeBook(int i) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            session.remove(b);
+            session.remove(i);
             session.getTransaction().commit();
             session.close();
             return true;

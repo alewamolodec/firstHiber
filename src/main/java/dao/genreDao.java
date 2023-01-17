@@ -10,5 +10,5 @@ public interface genreDao {
     public Genre getGenreById(int id);
     public List getAllGenres();
     public boolean addGenre(Genre g);
-    public boolean removeGenre(Genre g);
+    public boolean removeGenre(int g);
 }

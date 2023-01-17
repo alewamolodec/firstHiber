@@ -19,7 +19,7 @@ public class GenreDaoImpl implements genreDao{
     public List<Genre> getAllGenres() {
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
-            return session.createQuery("from Genre",Genre.class);
+            return session.createQuery("from Genre",Genre.class).list();
         }
     }
 
@@ -38,7 +38,7 @@ public class GenreDaoImpl implements genreDao{
     }
 
     @Override
-    public boolean removeGenre(Genre g) {
+    public boolean removeGenre(int g) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.remove(g);

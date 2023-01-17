@@ -89,7 +89,7 @@ public class Authors {
     public Authors() {
     }
 
-    public Authors(int id, String firstName, String lastName, String middleName, Date birthDate) {
+    public Authors( String firstName, String lastName, String middleName, Date birthDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
