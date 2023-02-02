@@ -3,28 +3,44 @@ package dao;
 import config.HibernateUtil;
 import model.Authors;
 import org.hibernate.Session;
-
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import java.util.List;
 
-public class AuthorDaoImpl implements authorDao{
+public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
+    private final SessionFactory sessionFactory;
+
+    public AuthorDaoImpl() {
+        sessionFactory = HibernateUtil.getSessionFactory();
+    }
+
     @Override
-    public Authors getAuthorById(int id) {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+    public Authors getById(int id)  {
+        Session session = sessionFactory.openSession();
+        try{
             session.beginTransaction();
-            return session.get(Authors.class, id);
+            Authors authors = session.get(Authors.class, id);
+            session.getTransaction().commit();
+            session.getSessionFactory().close();
+            return authors;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            session.getSessionFactory().close();
+            return null;
         }
     }
 
     @Override
-    public List<Authors> getAllAuthors() {
+    public List<Authors> getAll() {
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
-            return session.createQuery("from Authors",Authors.class).list();
+            Query<Authors> authors = session.createQuery("from Authors", Authors.class);
+            return authors.getResultList();
         }
     }
 
     @Override
-    public boolean addAuthor(Authors a) {
+    public boolean add(Authors a) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.persist(a);
@@ -38,7 +54,7 @@ public class AuthorDaoImpl implements authorDao{
     }
 
     @Override
-    public boolean removeAuthor(Authors i) {
+    public boolean remove(Authors i) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.remove(i);
@@ -49,5 +65,10 @@ public class AuthorDaoImpl implements authorDao{
         catch(Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public Authors getByGenre(int id) {
+        return null;
     }
 }

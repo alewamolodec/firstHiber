@@ -2,7 +2,6 @@ package model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -89,8 +88,7 @@ public class Authors {
     public Authors() {
     }
 
-    public Authors( String firstName, String lastName, String middleName, Date birthDate) {
-        this.id = id;
+    public Authors(String firstName, String lastName, String middleName, Date birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;

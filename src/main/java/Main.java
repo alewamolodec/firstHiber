@@ -1,5 +1,6 @@
 import dao.AuthorDaoImpl;
 import dao.BookDaoImpl;
+import dao.CommonDAOIml;
 import dao.GenreDaoImpl;
 import model.Authors;
 import service.BookServiceImpl;
@@ -13,7 +14,7 @@ public class Main {
 
         AuthorServiceImpl authorService = new AuthorServiceImpl(new AuthorDaoImpl());
 
-        Authors authors = new Authors("Петр","Я","Молк",new Date(1964-06-30));
+        Authors authors = new Authors("Петр","Я","Молк", new Date(1964-06-30));
 
 
         authorService.removeAuthor(authorService.getAuthorById(7));

@@ -13,7 +13,6 @@ public class Book {
     private int id;
     @Column(name = "name")
     private String name;
-
     @ManyToOne
     @JoinColumn(name="author_id")
     private Authors author_id;
@@ -31,7 +30,6 @@ public class Book {
 
 
     public Book(String name, Authors author_id, List genre_id, int year, int countOfBooks) {
-        this.id = id;
         this.name = name;
         this.author_id = author_id;
         this.genre_id = genre_id;
@@ -72,8 +70,6 @@ public class Book {
         this.name = name;
     }
 
-
-
     public void setYear(int year) {
         this.year = year;
     }
@@ -89,8 +85,6 @@ public class Book {
     public String getName() {
         return name;
     }
-
-
 
     public int getYear() {
         return year;
