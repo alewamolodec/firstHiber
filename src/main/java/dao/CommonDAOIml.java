@@ -1,10 +1,8 @@
 package dao;
 
 import config.HibernateUtil;
-import model.Authors;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -41,12 +39,36 @@ public class CommonDAOIml<T> implements CommonDAO<T> {
     }
 
     @Override
-    public boolean add(Authors a) {
-        return false;
+    public boolean add(T a) {
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+            session.persist(a);
+            session.getTransaction().commit();
+            session.getSessionFactory().close();
+            return true;
+        }
+        catch(Exception e) {
+            session.getTransaction().rollback();
+            session.getSessionFactory().close();
+            return false;
+        }
     }
 
     @Override
-    public boolean remove(Authors a) {
-        return false;
+    public boolean remove(T a) {
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+            session.remove(a);
+            session.getTransaction().commit();
+            session.getSessionFactory().close();
+            return true;
+        }
+        catch(Exception e) {
+            session.getTransaction().rollback();
+            session.getSessionFactory().close();
+            return false;
+        }
     }
 }

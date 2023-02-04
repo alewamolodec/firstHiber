@@ -1,15 +1,13 @@
 package service;
 
 import dao.GenreDaoImpl;
-import model.Book;
 import model.Genre;
 import util.StringFormatter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class GenreServiceImpl implements genreService {
+public class GenreServiceImpl implements GenreService {
     private GenreDaoImpl dao;
 
     public GenreServiceImpl(GenreDaoImpl dao) {
@@ -18,32 +16,22 @@ public class GenreServiceImpl implements genreService {
 
     @Override
     public Genre getGenreById(int i) {
-        try{
-            Optional<Genre> g =Optional.of(dao.getGenreById(i));
-            if(g.isPresent()){
-                return dao.getGenreById(i);
-            }else{
-                return null;}}
-        catch (Exception e){
-            System.out.println("такого жанра нет, нате этот");
-            return dao.getGenreById(1);
-        }
+        return (Genre) Optional.of(dao.getById(i)).orElseThrow(() -> new RuntimeException("такого автора нет"));
     }
 
     @Override
     public List<Genre> getAllGenres() {
-        return Optional.ofNullable(dao.getAllGenres()).orElse(new ArrayList<>());
+        return Optional.ofNullable(dao.getAll()).orElse(new ArrayList<>());
     }
 
     @Override
     public void addGenre(Genre g) {
         g.setName(StringFormatter.strCheck(g.getName()));
-        dao.addGenre(g);
-
+        dao.add(g);
     }
 
     @Override
-    public void removeGenre(int g) {
-        dao.removeGenre(g);
+    public void removeGenre(Genre g) {
+        dao.remove(g);
     }
 }

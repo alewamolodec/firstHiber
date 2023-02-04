@@ -21,27 +21,34 @@ public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
             session.beginTransaction();
             Authors authors = session.get(Authors.class, id);
             session.getTransaction().commit();
-            session.getSessionFactory().close();
+            session.close();
             return authors;
         } catch (Exception e) {
             session.getTransaction().rollback();
-            session.getSessionFactory().close();
+            session.close();
             return null;
         }
     }
 
     @Override
     public List<Authors> getAll() {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+        Session session = sessionFactory.openSession();
+        try{
             session.beginTransaction();
             Query<Authors> authors = session.createQuery("from Authors", Authors.class);
+            session.getTransaction().commit();
+            session.close();
             return authors.getResultList();
+        } catch(Exception e){
+            session.close();
+            return null;
         }
     }
 
     @Override
     public boolean add(Authors a) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        Session session = sessionFactory.openSession();
+        try{
             session.beginTransaction();
             session.persist(a);
             session.getTransaction().commit();
@@ -49,13 +56,16 @@ public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
             return true;
         }
         catch(Exception e) {
+            session.getTransaction().rollback();
+            session.close();
             return false;
         }
     }
 
     @Override
     public boolean remove(Authors i) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        Session session = sessionFactory.openSession();
+        try{
             session.beginTransaction();
             session.remove(i);
             session.getTransaction().commit();
@@ -63,6 +73,8 @@ public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
             return true;
         }
         catch(Exception e) {
+            session.getTransaction().rollback();
+            session.close();
             return false;
         }
     }

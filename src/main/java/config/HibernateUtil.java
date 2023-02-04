@@ -1,10 +1,11 @@
 package config;
 
+import model.Authors;
 import model.Book;
+import model.Genre;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
-
 import java.util.Properties;
 
 public class HibernateUtil {
@@ -20,11 +21,13 @@ public class HibernateUtil {
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                settings.put(Environment.HBM2DDL_AUTO, "verify");
+                settings.put(Environment.HBM2DDL_AUTO, "none");
 
                 sessionFactory = new Configuration()
                         .setProperties(settings)
                         .addAnnotatedClass(Book.class)
+                        .addAnnotatedClass(Genre.class)
+                        .addAnnotatedClass(Authors.class)
                         .buildSessionFactory();
             } catch (Exception e) {
                 e.printStackTrace();

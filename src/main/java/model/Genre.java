@@ -54,7 +54,6 @@ public class Genre {
     }
 
     public Genre( String name) {
-        this.id = id;
         this.name = name;
     }
 }

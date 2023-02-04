@@ -1,10 +1,9 @@
 import dao.AuthorDaoImpl;
 import dao.BookDaoImpl;
-import dao.CommonDAOIml;
 import dao.GenreDaoImpl;
 import model.Authors;
-import service.BookServiceImpl;
 import service.AuthorServiceImpl;
+import service.BookServiceImpl;
 import service.GenreServiceImpl;
 
 import java.util.Date;
@@ -12,11 +11,16 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
 
-        AuthorServiceImpl authorService = new AuthorServiceImpl(new AuthorDaoImpl());
+        AuthorServiceImpl authorService = new AuthorServiceImpl();
+        BookServiceImpl bookService = new BookServiceImpl(new BookDaoImpl());
+        GenreServiceImpl genreService = new GenreServiceImpl(new GenreDaoImpl());
 
-        Authors authors = new Authors("Петр","Я","Молк", new Date(1964-06-30));
+        Authors author = new Authors("Alex","Potanin","Millionerov",new Date(16-8-2000));
+
+        authorService.getAuthorById(3);
+        authorService.getAllAuthors();
+        authorService.removeAuthor(author);
 
 
-        authorService.removeAuthor(authorService.getAuthorById(7));
     }
 }

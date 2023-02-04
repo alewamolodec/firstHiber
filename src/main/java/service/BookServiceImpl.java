@@ -3,12 +3,11 @@ package service;
 import dao.BookDaoImpl;
 import model.Book;
 import util.StringFormatter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BookServiceImpl implements bookService {
+public class BookServiceImpl implements BookService {
     private BookDaoImpl dao;
 
     public BookServiceImpl(BookDaoImpl dao) {
@@ -17,40 +16,29 @@ public class BookServiceImpl implements bookService {
 
     @Override
     public Book getBookById(int i) {
-        try{
-            Optional<Book> b =Optional.of(dao.getBookById(i));
-            if(b.isPresent()){
-                return dao.getBookById(i);
-            }else{
-                return null;
-            }
-        }catch (Exception e){
-            System.out.println("no book");
-            return null;
-        }
-
+        return (Book) Optional.of(dao.getById(i)).orElseThrow(() -> new RuntimeException("такой книги нет"));
     }
 
     @Override
     public List<Book> getAllBooks() {
-        return Optional.ofNullable(dao.getAllBooks()).orElse(new ArrayList<>());
+        return Optional.ofNullable(dao.getAll()).orElse(new ArrayList<>());
     }
 
     @Override
     public void addBook(Book b) {
         if(b.getYear()>0&&b.getCountOfBooks()>0){
         b.setName(StringFormatter.strCheck(b.getName()));
-        dao.addBook(b);}
+        dao.add(b);}
         else {
             b.setCountOfBooks(1);
             b.setYear(1);
             b.setName(StringFormatter.strCheck(b.getName()));
-            dao.addBook(b);}
+            dao.add(b);}
         }
 
 
     @Override
-    public void removeBook(int i) {
-        dao.removeBook(i);
+    public void removeBook(Book i) {
+        dao.remove(i);
     }
 }
