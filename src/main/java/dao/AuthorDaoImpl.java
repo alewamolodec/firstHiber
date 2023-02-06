@@ -21,11 +21,9 @@ public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
             session.beginTransaction();
             Authors authors = session.get(Authors.class, id);
             session.getTransaction().commit();
-            session.close();
             return authors;
         } catch (Exception e) {
             session.getTransaction().rollback();
-            session.close();
             return null;
         }
     }
@@ -37,10 +35,8 @@ public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
             session.beginTransaction();
             Query<Authors> authors = session.createQuery("from Authors", Authors.class);
             session.getTransaction().commit();
-            session.close();
             return authors.getResultList();
         } catch(Exception e){
-            session.close();
             return null;
         }
     }
@@ -52,12 +48,10 @@ public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
             session.beginTransaction();
             session.persist(a);
             session.getTransaction().commit();
-            session.close();
             return true;
         }
         catch(Exception e) {
             session.getTransaction().rollback();
-            session.close();
             return false;
         }
     }
@@ -69,12 +63,10 @@ public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
             session.beginTransaction();
             session.remove(i);
             session.getTransaction().commit();
-            session.close();
             return true;
         }
         catch(Exception e) {
             session.getTransaction().rollback();
-            session.close();
             return false;
         }
     }

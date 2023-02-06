@@ -21,11 +21,9 @@ public class BookDaoImpl implements BookDao, CommonDAO<Book> {
             session.beginTransaction();
             Book book = session.get(Book.class, id);
             session.getTransaction().commit();
-            session.getSessionFactory().close();
             return book;
         }catch (Exception e){
             session.getTransaction().rollback();
-            session.getSessionFactory().close();
             return null;
         }
     }
@@ -37,11 +35,9 @@ public class BookDaoImpl implements BookDao, CommonDAO<Book> {
             session.beginTransaction();
             Query<Book> books = session.createQuery("from Book",Book.class);
             session.getTransaction().commit();
-            session.getSessionFactory().close();
             return books.getResultList();
         }catch (Exception e){
             session.getTransaction().rollback();
-            session.getSessionFactory().close();
             return null;
         }
     }
@@ -53,11 +49,9 @@ public class BookDaoImpl implements BookDao, CommonDAO<Book> {
             session.beginTransaction();
             session.persist(b);
             session.getTransaction().commit();
-            session.getSessionFactory().close();
             return true;
         } catch(Exception e) {
             session.getTransaction().rollback();
-            session.getSessionFactory().close();
             return false;
         }
     }
@@ -69,12 +63,10 @@ public class BookDaoImpl implements BookDao, CommonDAO<Book> {
             session.beginTransaction();
             session.remove(i);
             session.getTransaction().commit();
-            session.getSessionFactory().close();
             return true;
         }
         catch(Exception e) {
             session.getTransaction().rollback();
-            session.getSessionFactory().close();
             return false;
         }
     }
@@ -86,11 +78,9 @@ public class BookDaoImpl implements BookDao, CommonDAO<Book> {
             session.beginTransaction();
             Book book = session.createQuery("from Book where genre_id = ? ",Book.class).getSingleResult();
             session.getTransaction().commit();
-            session.getSessionFactory().close();
             return book;
         }catch (Exception e){
             session.getTransaction().rollback();
-            session.getSessionFactory().close();
             return null;
         }
     }

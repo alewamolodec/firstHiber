@@ -1,4 +1,3 @@
-import dao.AuthorDaoImpl;
 import dao.BookDaoImpl;
 import dao.GenreDaoImpl;
 import model.Authors;
@@ -17,9 +16,9 @@ public class Main {
 
         Authors author = new Authors("Alex","Potanin","Millionerov",new Date(16-8-2000));
 
-        authorService.getAuthorById(3);
-        authorService.getAllAuthors();
-        authorService.removeAuthor(author);
+        authorService.getById(3);
+        authorService.getAll();
+        authorService.remove(author);
 
 
     }

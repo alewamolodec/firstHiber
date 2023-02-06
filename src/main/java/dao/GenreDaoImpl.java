@@ -21,11 +21,9 @@ public class GenreDaoImpl implements GenreDao, CommonDAO<Genre> {
             session.beginTransaction();
             Genre genre = session.get(Genre.class, id);
             session.getTransaction().commit();
-            session.getSessionFactory().close();
             return genre;
         } catch (Exception e) {
             session.getTransaction().rollback();
-            session.getSessionFactory().close();
             return null;
         }
     }
@@ -37,11 +35,9 @@ public class GenreDaoImpl implements GenreDao, CommonDAO<Genre> {
             session.beginTransaction();
             Query<Genre> genre = session.createQuery("from Genre", Genre.class);
             session.getTransaction().commit();
-            session.getSessionFactory().close();
             return genre.getResultList();
         } catch(Exception e){
             session.getTransaction().rollback();
-            session.getSessionFactory().close();
             return null;
         }
     }
@@ -54,12 +50,10 @@ public class GenreDaoImpl implements GenreDao, CommonDAO<Genre> {
             session.beginTransaction();
             session.persist(a);
             session.getTransaction().commit();
-            session.getSessionFactory().close();
             return true;
         }
         catch(Exception e) {
             session.getTransaction().rollback();
-            session.getSessionFactory().close();
             return false;
         }
     }
@@ -73,12 +67,10 @@ public class GenreDaoImpl implements GenreDao, CommonDAO<Genre> {
             session.beginTransaction();
             session.remove(i);
             session.getTransaction().commit();
-            session.getSessionFactory().close();
             return true;
         }
         catch(Exception e) {
             session.getTransaction().rollback();
-            session.getSessionFactory().close();
             return false;
         }
     }

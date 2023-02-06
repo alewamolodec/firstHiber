@@ -16,7 +16,7 @@ public class Book {
     @ManyToOne
     @JoinColumn(name="author_id")
     private Authors author_id;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="genre_id")
     private List<Genre> genre_id;
     @Column(name = "year")

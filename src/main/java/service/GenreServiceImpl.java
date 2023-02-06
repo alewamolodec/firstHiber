@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class GenreServiceImpl implements GenreService {
+public class GenreServiceImpl implements CommonService<Genre> {
     private GenreDaoImpl dao;
 
     public GenreServiceImpl(GenreDaoImpl dao) {
@@ -15,23 +15,25 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public Genre getGenreById(int i) {
-        return (Genre) Optional.of(dao.getById(i)).orElseThrow(() -> new RuntimeException("такого автора нет"));
+    public Genre getById(int i) {
+        return Optional.of(dao.getById(i)).orElseThrow(() -> new RuntimeException("такого автора нет"));
     }
 
     @Override
-    public List<Genre> getAllGenres() {
+    public List<Genre> getAll() {
         return Optional.ofNullable(dao.getAll()).orElse(new ArrayList<>());
     }
 
     @Override
-    public void addGenre(Genre g) {
+    public boolean add(Genre g) {
         g.setName(StringFormatter.strCheck(g.getName()));
         dao.add(g);
+        return true;
     }
 
     @Override
-    public void removeGenre(Genre g) {
+    public boolean remove(Genre g) {
         dao.remove(g);
+        return true;
     }
 }
