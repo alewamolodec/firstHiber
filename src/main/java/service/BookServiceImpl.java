@@ -45,4 +45,10 @@ public class BookServiceImpl implements CommonService<Book> {
         dao.remove(i);
         return true;
     }
+
+    @Override
+    public boolean update(Book id, String nS) {
+        dao.update(id,nS);
+        return true;
+    }
 }

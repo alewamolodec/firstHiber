@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import java.util.List;
 
-public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
+public class AuthorDaoImpl implements CommonDAO<Authors> {
     private final SessionFactory sessionFactory;
 
     public AuthorDaoImpl() {
@@ -15,9 +15,9 @@ public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
     }
 
     @Override
-    public Authors getById(int id)  {
+    public Authors getById(int id) {
         Session session = sessionFactory.openSession();
-        try{
+        try {
             session.beginTransaction();
             Authors authors = session.get(Authors.class, id);
             session.getTransaction().commit();
@@ -31,12 +31,12 @@ public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
     @Override
     public List<Authors> getAll() {
         Session session = sessionFactory.openSession();
-        try{
+        try {
             session.beginTransaction();
             Query<Authors> authors = session.createQuery("from Authors", Authors.class);
             session.getTransaction().commit();
             return authors.getResultList();
-        } catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -44,13 +44,12 @@ public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
     @Override
     public boolean add(Authors a) {
         Session session = sessionFactory.openSession();
-        try{
+        try {
             session.beginTransaction();
             session.persist(a);
             session.getTransaction().commit();
             return true;
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             session.getTransaction().rollback();
             return false;
         }
@@ -59,20 +58,31 @@ public class AuthorDaoImpl implements AuthorDao, CommonDAO<Authors> {
     @Override
     public boolean remove(Authors i) {
         Session session = sessionFactory.openSession();
-        try{
+        try {
             session.beginTransaction();
             session.remove(i);
             session.getTransaction().commit();
             return true;
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             session.getTransaction().rollback();
             return false;
         }
     }
 
     @Override
-    public Authors getByGenre(int id) {
-        return null;
+    public boolean update(Authors id, String nS) {
+        Session session = sessionFactory.openSession();
+        id.setFirstName(nS);
+        try {
+            session.beginTransaction();
+            session.update(id);
+            session.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            return false;
+        }
+
     }
+
 }

@@ -17,8 +17,7 @@ public class Main {
         Authors author = new Authors("Alex","Potanin","Millionerov",new Date(16-8-2000));
 
         authorService.getById(3);
-        authorService.getAll();
-        authorService.remove(author);
+        authorService.update(authorService.getById(2),"Коля");
 
 
     }

@@ -36,4 +36,10 @@ public class GenreServiceImpl implements CommonService<Genre> {
         dao.remove(g);
         return true;
     }
+
+    @Override
+    public boolean update(Genre id, String nS) {
+        dao.update(id,nS);
+        return true;
+    }
 }

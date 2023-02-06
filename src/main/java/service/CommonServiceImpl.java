@@ -29,4 +29,9 @@ public class CommonServiceImpl<T> implements CommonService<T>{
     public boolean remove(T a) {
         return commonDAOIml.remove(a);
     }
+
+    @Override
+    public boolean update(T id, String nS) {
+        return true;
+    }
 }

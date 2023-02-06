@@ -1,6 +1,7 @@
 package dao;
 
 import config.HibernateUtil;
+import model.Authors;
 import model.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -62,6 +63,22 @@ public class BookDaoImpl implements BookDao, CommonDAO<Book> {
         try{
             session.beginTransaction();
             session.remove(i);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch(Exception e) {
+            session.getTransaction().rollback();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean update(Book id, String nS) {
+        Session session = sessionFactory.openSession();
+        id.setName(nS);
+        try{
+            session.beginTransaction();
+            session.update(id);
             session.getTransaction().commit();
             return true;
         }

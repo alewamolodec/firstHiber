@@ -7,4 +7,5 @@ public interface CommonService<T>  {
     List<T> getAll();
     boolean add(T a);
     boolean remove(T a);
+    boolean update(T id,String nS);
 }

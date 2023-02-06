@@ -47,5 +47,11 @@ public class AuthorServiceImpl implements CommonService<Authors> {
         return true;
     }
 
+    @Override
+    public boolean update(Authors id, String nS) {
+        dao.update(id,nS);
+        return true;
+    }
+
 
 }

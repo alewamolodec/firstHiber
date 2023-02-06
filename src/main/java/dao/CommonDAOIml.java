@@ -71,4 +71,20 @@ public class CommonDAOIml<T> implements CommonDAO<T> {
             return false;
         }
     }
+
+    @Override
+    public boolean update(T t, String nS) {
+        Session session = sessionFactory.openSession();
+
+        try{
+            session.beginTransaction();
+            session.update(t);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch(Exception e) {
+            session.getTransaction().rollback();
+            return false;
+        }
+    }
 }

@@ -76,6 +76,22 @@ public class GenreDaoImpl implements GenreDao, CommonDAO<Genre> {
     }
 
     @Override
+    public boolean update(Genre genre, String nS) {
+        Session session = sessionFactory.openSession();
+        genre.setName(nS);
+        try{
+            session.beginTransaction();
+            session.update(genre);
+            session.getTransaction().commit();
+            return true;
+        }
+        catch(Exception e) {
+            session.getTransaction().rollback();
+            return false;
+        }
+    }
+
+    @Override
     public Genre getByBook(int id) {
         return null;
     }
